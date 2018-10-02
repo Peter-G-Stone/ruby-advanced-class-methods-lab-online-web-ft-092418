@@ -53,14 +53,9 @@ class Song
   end 
   
   def self.new_from_filename(file)
-    file = file.split("-")
-    file = file.map {|s| s.split(".")} 
-    file.flatten!
-    file = file.reject {|s| s.include?("mp3")}
-    file = file.map {|s| s.strip!}
-    
-    artistname = file[0]
-    songname = file[1]
+
+    artistname, songname = file.split(" - ")
+    songname = songname.gsub(".mp3", "")
     
     song = self.find_or_create_by_name(songname)
     song.artist_name = artistname 
