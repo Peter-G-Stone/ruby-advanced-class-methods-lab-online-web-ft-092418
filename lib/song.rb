@@ -58,10 +58,11 @@ class Song
     file.flatten!
     file = file.reject {|s| s.include?("mp3")}
     file = file.map {|s| s.strip!}
+    
     artistname = file[0]
     songname = file[1]
+    
     song = self.find_or_create_by_name(songname)
-     
     song.artist_name = artistname 
     song  
   end 
